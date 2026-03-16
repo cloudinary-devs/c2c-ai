@@ -60,7 +60,7 @@ export default function RootLayout({
         <footer className="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 text-white py-8 mt-16">
           <div className="container mx-auto px-4 text-center">
             <p className="text-lg font-bold font-[family-name:var(--font-fredoka)]">
-              © 2025 CapZone - Keep it Funky! 🎨
+              © {new Date().getFullYear()} CapZone - Keep it Funky! 🎨
             </p>
           </div>
         </footer>
