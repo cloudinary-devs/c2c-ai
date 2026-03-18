@@ -1,4 +1,4 @@
-# Capital Caps - Baseball Cap Store (Course 1: AI)
+# Capital Caps - Baseball Cap Store (Course 2: AI)
 
 A modern, full-stack e-commerce application for a baseball cap store built with Next.js 15 and Cloudinary. This project demonstrates media literacy best practices for developers, showcasing how to effectively manage and transform images using Cloudinary's powerful API enhanced with AI.
 
