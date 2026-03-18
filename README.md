@@ -94,7 +94,7 @@ final/
 │   ├── ProductCard.tsx    # Product card component
 │   └── ProductImage.tsx   # Cloudinary image component
 │   └── ImageModal.tsx     # Opening an image in a modal
-│   └── ColourSelector.tsx # An AI-enhanced colour picker
+│   └── ColorSelector.tsx  # An AI-enhanced color picker
 ├── lib/                   # Utility libraries
 │   ├── cloudinary.ts      # Cloudinary configuration
 ├── products/              # Product data
@@ -142,7 +142,7 @@ Run these scripts from `start/` or `final/`.
 - `final/app/products/[id]/page.tsx` - Individual product detail page
 - `final/components/ProductImage.tsx` - Cloudinary image component with transformations
 - `final/components/ImageModal.tsx` - Modal window
-- `final/ColourSelector.tsx` - Colour picker with AI integration
+- `final/ColorSelector.tsx` - Color picker with AI integration
 - `final/lib/cloudinary.ts` - Cloudinary SDK configuration
 - `final/next.config.ts` - Next.js configuration (Server Actions body size limit)
 

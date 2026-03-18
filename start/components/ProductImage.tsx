@@ -7,32 +7,32 @@ export default function ProductImage({
   width,
   height,
   discount = false,
-  colour,
+  color,
   widescreen = false,
 }: {
   publicId: string;
   width: number;
   height: number;
   discount?: boolean;
-  colour?: string;
+  color?: string;
   widescreen?: boolean;
 }) {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    if (colour || widescreen) {
+    if (color || widescreen) {
       setIsLoading(true);
     }
-  }, [colour, widescreen]);
+  }, [color, widescreen]);
   const transformations = [];
 
   // if (widescreen) {
   //   transformations.push('c_pad,w_3413,ar_16:9,b_gen_fill');
   // }
 
-  // if (colour) {
+  // if (color) {
   //   // Remove # from hex code for Cloudinary
-  //   const hexValue = colour.startsWith('#') ? colour.substring(1) : colour;
+  //   const hexValue = color.startsWith('#') ? color.substring(1) : color;
   //   transformations.push(`e_gen_recolor:prompt_baseball cap;to-color_${hexValue}`);
   // }
 
@@ -44,7 +44,7 @@ export default function ProductImage({
         </div>
       )}
       <CldImage
-        key={`${colour || 'default'}-${widescreen}`}
+        key={`${color || 'default'}-${widescreen}`}
         onLoad={() => setIsLoading(false)}
         src={`${process.env.NEXT_PUBLIC_CLOUDINARY_FOLDER_NAME}/${publicId}`}
         alt={`Product: ${publicId}`}
