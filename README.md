@@ -1,4 +1,4 @@
-# Capital Caps - Baseball Cap Store (Course 2: AI)
+# Capital Caps - Baseball Cap Store (Course 1: AI)
 
 A modern, full-stack e-commerce application for a baseball cap store built with Next.js 15 and Cloudinary. This project demonstrates media literacy best practices for developers, showcasing how to effectively manage and transform images using Cloudinary's powerful API enhanced with AI.
 
@@ -11,15 +11,16 @@ A modern, full-stack e-commerce application for a baseball cap store built with 
 - **Responsive Design**: Beautiful, mobile-first UI built with Tailwind CSS
 - **Admin Panel**: Access admin features and utilities
 - **Image Transformations**: Automatic cropping, watermarking, and discount badges
+- **AI Enhancements**: Color picker and AI-generated recoloring
 - **Server-Side Rendering**: Fast, SEO-friendly pages with Next.js App Router
 
 ## 🛠️ Tech Stack
 
-- **Framework**: Next.js 16+ (App Router)
+- **Framework**: Next.js 15+ (App Router)
 - **Language**: TypeScript 5
 - **Styling**: Tailwind CSS 4
 - **Image Management**: Cloudinary & next-cloudinary
-- **Deployment**: Netlify
+- **Deployment**: Platform-agnostic (build/run from `final/`)
 - **Runtime**: React 19+
 
 ## 📋 Prerequisites
@@ -27,7 +28,6 @@ A modern, full-stack e-commerce application for a baseball cap store built with 
 - Node.js 20+ 
 - npm or yarn
 - Cloudinary account (free tier works)
-- Netlify account (for deployment)
 - CodeSandbox account (if you want to try a sandbox rather than a local build)
 
 ## 🔧 Local installation
@@ -35,7 +35,7 @@ A modern, full-stack e-commerce application for a baseball cap store built with 
 1. **Clone the repository**
    ```bash
    git clone <repository-url>
-   cd start
+   cd start # starter, or cd final # completed version
    ```
 
 2. **Install dependencies**
@@ -45,7 +45,7 @@ A modern, full-stack e-commerce application for a baseball cap store built with 
 
 3. **Set up environment variables**
 
-   To run the final version of this app, create a `.env.local` file in the `final` directory with the following variables:
+   To run either version of this app, create a `.env.local` file in the `start/` or `final/` directory you're using with the following variables (see `start/.env.example` for the required variable names):
 
    ```env
    NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME=your_cloud_name
@@ -54,9 +54,10 @@ A modern, full-stack e-commerce application for a baseball cap store built with 
    NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET=baseball-cap-store
    NEXT_PUBLIC_CLOUDINARY_FOLDER_NAME=baseball-cap-store
    ```
-   Then, follow step 2 above.
 
 ## 🏃 Running the Project
+
+Run these commands from the directory you want to run: `start/` or `final/`.
 
 ### Development Mode
 
@@ -81,6 +82,8 @@ npm run lint
 
 ## 📁 Project Structure
 
+The `start/` directory contains the starter version; `final/` contains the completed version. The structure below is for `final/`.
+
 ```
 final/
 ├── app/                    # Next.js App Router pages
@@ -90,9 +93,10 @@ final/
 ├── components/            # React components
 │   ├── ProductCard.tsx    # Product card component
 │   └── ProductImage.tsx   # Cloudinary image component
+│   └── ImageModal.tsx     # Opening an image in a modal
+│   └── ColourSelector.tsx # An AI-enhanced colour picker
 ├── lib/                   # Utility libraries
 │   ├── cloudinary.ts      # Cloudinary configuration
-│   └── data/              # Data files (if needed)
 ├── products/              # Product data
 │   └── products.json      # Product catalog
 ├── scripts/               # Utility scripts
@@ -103,24 +107,10 @@ final/
 
 ## 🌐 Deployment
 
-### Netlify
+This repo does not include a platform-specific deployment config (for example, no `netlify.toml`).
 
-This project is configured for Netlify deployment with a `netlify.toml` file in the root directory.
+Build and run from the `final/` directory and set the required Cloudinary env vars:
 
-1. **Connect your repository** to Netlify
-2. **Set environment variables** in Netlify dashboard:
-   - Go to Site settings → Environment variables
-   - Add all the variables from your `.env.local` file
-3. **Deploy**: Netlify will automatically detect the configuration and deploy from the `final` directory
-
-The `netlify.toml` configuration:
-- Base directory: `final`
-- Build command: `npm run build`
-- Next.js plugin: Automatically enabled
-
-### Environment Variables on Netlify
-
-Make sure to add all environment variables in the Netlify dashboard:
 - `NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME`
 - `NEXT_PUBLIC_CLOUDINARY_API_KEY`
 - `CLOUDINARY_API_SECRET`
@@ -132,12 +122,14 @@ Make sure to add all environment variables in the Netlify dashboard:
 This project demonstrates several Cloudinary capabilities:
 
 - **Automatic Image Optimization**: Format and quality optimization
-- **Smart Cropping**: Automatic gravity-based cropping (`g_auto`)
+- **Smart Cropping**: Automatic gravity-based cropping (`gravity: 'auto'`)
 - **Overlays**: Logo watermarking on product images
 - **Dynamic Transformations**: Discount badges and text overlays
 - **Responsive Images**: Automatic sizing and format selection
 
 ## 📝 Available Scripts
+
+Run these scripts from `start/` or `final/`.
 
 - `npm run dev` - Start development server with Turbopack
 - `npm run build` - Build for production with Turbopack
@@ -146,22 +138,22 @@ This project demonstrates several Cloudinary capabilities:
 
 ## 🔍 Key Files
 
-- `app/page.tsx` - Home page with product listing
-- `app/products/[id]/page.tsx` - Individual product detail page
-- `components/ProductImage.tsx` - Cloudinary image component with transformations
-- `lib/cloudinary.ts` - Cloudinary SDK configuration
-- `next.config.ts` - Next.js configuration with file tracing for products.json
-- `netlify.toml` - Netlify deployment configuration
+- `final/app/page.tsx` - Home page with product listing
+- `final/app/products/[id]/page.tsx` - Individual product detail page
+- `final/components/ProductImage.tsx` - Cloudinary image component with transformations
+- `final/components/ImageModal.tsx` - Modal window
+- `final/ColourSelector.tsx` - Colour picker with AI integration
+- `final/lib/cloudinary.ts` - Cloudinary SDK configuration
+- `final/next.config.ts` - Next.js configuration (Server Actions body size limit)
 
 ## 🐛 Troubleshooting
 
-### Product pages show server error on Netlify
+### Product pages show server error on your deployment platform
 
-The `products.json` file is configured to be included in the build via `next.config.ts`. If you still encounter issues:
+The app reads `products/products.json` from `process.cwd()`. If you still encounter issues:
 
-1. Verify the file path in `next.config.ts` matches your file structure
-2. Check that `outputFileTracingIncludes` is correctly configured
-3. Ensure the `products` directory is committed to your repository
+1. Verify your build/run working directory is `final/`
+2. Verify the deployed files include `final/products/products.json`
 
 ### Cloudinary images not loading
 
@@ -170,11 +162,11 @@ The `products.json` file is configured to be included in the build via `next.con
 3. Ensure product images are uploaded to the correct folder in Cloudinary
 4. Run `npm run init` to upload the logo if it's missing
 
-### Build fails on Netlify
+### Build fails on your deployment platform
 
-1. Check that all environment variables are set in Netlify dashboard
-2. Verify the base directory in `netlify.toml` is correct (`final`)
-3. Ensure Node.js version is 20+ in Netlify build settings
+1. Check that all required environment variables are set
+2. Ensure the build/run working directory is `final/`
+3. Ensure Node.js version is 20+ in your build settings
 
 ## 📚 Learn More
 
